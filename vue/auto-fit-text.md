@@ -1,3 +1,52 @@
+AutoFitText
+
+Vue 3 自動調整文字大小的共用元件，主要用來處理「文字長度不固定，但必須塞進指定容器」的情況。
+
+適合：
+
+多國語系
+API 回傳長度不固定的名稱
+卡片標題
+Dashboard 數字
+固定尺寸 UI
+主要功能
+shrink：文字塞不下時自動縮小
+fill：盡量放大文字填滿空間
+minFontSize / maxFontSize
+group：多個文字共用相同字級
+measureTarget：指定實際測量容器
+sideGap：預留左右安全距離
+支援 px、rem、vw
+使用 ResizeObserver 監聽尺寸變化
+使用 MutationObserver 監聽文字變化
+核心概念
+容器尺寸
+   +
+文字尺寸
+   ↓
+判斷是否 Overflow
+   ↓
+自動調整 font-size
+使用原則
+
+優先使用正常 CSS：
+
+Grid / Flex
+↓
+clamp()
+↓
+Container Query
+↓
+line-clamp
+↓
+AutoFitText
+
+AutoFitText 比較適合處理「內容本身不可預測」的情況，不建議拿來取代一般 RWD。
+
+備註
+
+Nuxt / SSR 使用時，DOM 尺寸必須等 mounted 後才能測量，元件卸載時記得清除 Observer。
+
 ```
 <script lang="ts">
   /**
